@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useLearning } from '@/contexts/LearningContext';
 import { Star, Trophy } from 'lucide-react';
 import { Activity } from '@/data/activitiesData';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 
 interface ActivityCardProps {
   activity: Activity;
@@ -20,8 +20,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity, index }) => {
     if (!isCompleted) {
       completeActivity(activity.id);
     } else {
-      toast({
-        title: "Already Completed",
+      toast("Already Completed", {
         description: "You've already completed this activity!",
       });
     }
