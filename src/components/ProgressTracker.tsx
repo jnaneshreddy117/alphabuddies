@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLearning } from '@/contexts/LearningContext';
 import { Progress } from '@/components/ui/progress';
@@ -10,11 +9,11 @@ const ProgressTracker: React.FC = () => {
   
   const totalLetters = 26; // A-Z
   const totalWords = 10; // from our sample words
-  const totalActivities = activitiesData.length;
+  const totalActivities = activitiesData.length || 0;
   
   const letterProgress = Math.floor((progress.completedLetters.length / totalLetters) * 100);
   const wordProgress = Math.floor((progress.completedWords.length / totalWords) * 100);
-  const activityProgress = Math.floor((progress.completedActivities.length / totalActivities) * 100);
+  const activityProgress = totalActivities ? Math.floor((progress.completedActivities.length / totalActivities) * 100) : 0;
   
   const starsToNextLevel = 10 - (progress.stars % 10);
   
@@ -65,14 +64,16 @@ const ProgressTracker: React.FC = () => {
           <Progress value={wordProgress} className="h-2" />
         </div>
         
-        {/* Activities progress */}
-        <div>
-          <div className="flex justify-between mb-2">
-            <span className="font-medium">Activities</span>
-            <span>{progress.completedActivities.length}/{totalActivities}</span>
+        {/* Activities progress - we'll keep this section even though activities are removed */}
+        {totalActivities > 0 && (
+          <div>
+            <div className="flex justify-between mb-2">
+              <span className="font-medium">Activities</span>
+              <span>{progress.completedActivities.length}/{totalActivities}</span>
+            </div>
+            <Progress value={activityProgress} className="h-2" />
           </div>
-          <Progress value={activityProgress} className="h-2" />
-        </div>
+        )}
         
         {/* Badges */}
         <div>
@@ -103,12 +104,12 @@ const ProgressTracker: React.FC = () => {
                 📚
               </div>
             )}
-            {progress.completedActivities.length >= 3 && (
+            {progress.completedActivities.length >= 3 && totalActivities > 0 && (
               <div className="p-2 bg-orange-100 rounded-full" title="Activity Starter: Complete 3 activities">
                 🎮
               </div>
             )}
-            {progress.completedActivities.length >= 5 && (
+            {progress.completedActivities.length >= 5 && totalActivities > 0 && (
               <div className="p-2 bg-indigo-100 rounded-full" title="Activity Champion: Complete 5 activities">
                 🏆
               </div>

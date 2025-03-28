@@ -6,6 +6,7 @@ import { toast } from '@/components/ui/sonner';
 interface ProgressType {
   completedLetters: string[];
   completedWords: string[];
+  completedActivities: string[]; // Added this property
   stars: number;
   level: number;
 }
@@ -31,6 +32,7 @@ export const LearningProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [progress, setProgress] = useState<ProgressType>({
     completedLetters: [],
     completedWords: [],
+    completedActivities: [], // Initialize the array here
     stars: 0,
     level: 1,
   });
