@@ -3,15 +3,18 @@ import React from 'react';
 import { useLearning } from '@/contexts/LearningContext';
 import { Progress } from '@/components/ui/progress';
 import { motion } from 'framer-motion';
+import { activitiesData } from '@/data/activitiesData';
 
 const ProgressTracker: React.FC = () => {
   const { progress } = useLearning();
   
   const totalLetters = 26; // A-Z
   const totalWords = 10; // from our sample words
+  const totalActivities = activitiesData.length;
   
   const letterProgress = Math.floor((progress.completedLetters.length / totalLetters) * 100);
   const wordProgress = Math.floor((progress.completedWords.length / totalWords) * 100);
+  const activityProgress = Math.floor((progress.completedActivities.length / totalActivities) * 100);
   
   const starsToNextLevel = 10 - (progress.stars % 10);
   
@@ -62,6 +65,15 @@ const ProgressTracker: React.FC = () => {
           <Progress value={wordProgress} className="h-2" />
         </div>
         
+        {/* Activities progress */}
+        <div>
+          <div className="flex justify-between mb-2">
+            <span className="font-medium">Activities</span>
+            <span>{progress.completedActivities.length}/{totalActivities}</span>
+          </div>
+          <Progress value={activityProgress} className="h-2" />
+        </div>
+        
         {/* Badges */}
         <div>
           <h3 className="font-medium mb-3">Badges</h3>
@@ -89,6 +101,16 @@ const ProgressTracker: React.FC = () => {
             {progress.completedWords.length >= 7 && (
               <div className="p-2 bg-pink-100 rounded-full" title="Vocabulary Virtuoso: Complete 7 words">
                 📚
+              </div>
+            )}
+            {progress.completedActivities.length >= 3 && (
+              <div className="p-2 bg-orange-100 rounded-full" title="Activity Starter: Complete 3 activities">
+                🎮
+              </div>
+            )}
+            {progress.completedActivities.length >= 5 && (
+              <div className="p-2 bg-indigo-100 rounded-full" title="Activity Champion: Complete 5 activities">
+                🏆
               </div>
             )}
             {progress.stars >= 15 && (

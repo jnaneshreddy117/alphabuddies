@@ -2,7 +2,7 @@
 import React from 'react';
 import { useLearning } from '@/contexts/LearningContext';
 import { Button } from '@/components/ui/button';
-import { Book, BookOpen, Star } from 'lucide-react';
+import { Book, BookOpen, Star, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header: React.FC = () => {
@@ -61,6 +61,16 @@ const Header: React.FC = () => {
         >
           <BookOpen className="h-4 w-4 mr-2" />
           <span>Words</span>
+        </Button>
+        <Button
+          variant="ghost"
+          className={`flex-1 rounded-none py-3 ${
+            currentSection === 'activities' ? 'bg-alphabuddies-card' : ''
+          }`}
+          onClick={() => setCurrentSection('activities')}
+        >
+          <Trophy className="h-4 w-4 mr-2" />
+          <span>Activities</span>
         </Button>
         <Button
           variant="ghost"

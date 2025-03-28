@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import AlphabetCard from '@/components/AlphabetCard';
 import WordExercise from '@/components/WordExercise';
 import ProgressTracker from '@/components/ProgressTracker';
+import ActivitiesSection from '@/components/ActivitiesSection';
 import { alphabetData, sampleWords } from '@/data/alphabetData';
 import { motion } from 'framer-motion';
 
@@ -62,6 +63,8 @@ const MainContent = () => {
             </div>
           </>
         )}
+        
+        {currentSection === 'activities' && <ActivitiesSection />}
         
         {currentSection === 'progress' && (
           <>
