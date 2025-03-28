@@ -1,7 +1,6 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { activitiesData } from '@/data/activitiesData';
-import { toast } from 'sonner';
+import { toast } from '@/components/ui/sonner';
 
 // Define the types of state and updates
 interface ProgressType {
@@ -66,7 +65,8 @@ export const LearningProvider: React.FC<{ children: ReactNode }> = ({ children }
         completedActivities: [...prev.completedActivities, activityId],
         stars: prev.stars + 3,
       }));
-      toast("Activity Completed!", {
+      toast({
+        title: "Activity Completed!",
         description: "You earned 3 stars!",
       });
     }
