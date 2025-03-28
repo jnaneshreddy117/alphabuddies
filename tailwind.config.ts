@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,16 +53,16 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				// AlphaBuddies custom colors
+				alphabuddies: {
+					primary: '#8B5CF6', // Purple
+					secondary: '#D946EF', // Pink
+					accent: '#F97316', // Orange
+					background: '#FEF7CD', // Soft Yellow
+					card: '#E5DEFF', // Soft Purple
+					text: '#1A1F2C', // Dark Purple
+					success: '#F2FCE2', // Soft Green
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +85,24 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'bounce-light': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'bounce-light': 'bounce-light 2s ease-in-out infinite'
+			},
+			fontFamily: {
+				'rounded': ['"Varela Round"', 'sans-serif'],
 			}
 		}
 	},
